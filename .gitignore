@@ -1,0 +1,76 @@
+# --- Gizli bilgiler / ortam ---
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+credentials*.json
+secrets*.json
+.claude/settings.local.json
+.claude/worktrees/
+.superpowers/
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+.python-version
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.ipynb_checkpoints/
+
+# --- Node ---
+node_modules/
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.npm/
+
+# --- Loglar / geçici dosyalar ---
+*.log
+logs/
+tmp/
+temp/
+*.tmp
+*.bak
+
+# --- Medya / yerel çalışma çıktıları ---
+data/
+uploads/
+outputs/
+*.mp4
+*.mov
+*.webm
+*.mkv
+*.m4a
+*.mp3
+*.wav
+*.aac
+*.flac
+
+# --- Proje içi araçlar (taşınabilir ffmpeg, uv önbelleği) ---
+tools/
+
+# --- Editör / IDE ---
+.vscode/
+!.vscode/settings.json
+!.vscode/extensions.json
+.idea/
+*.swp
+*~
+
+# --- İşletim sistemi ---
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store

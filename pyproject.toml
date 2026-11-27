@@ -1,0 +1,43 @@
+[project]
+name = "autocript"
+version = "0.3.0"
+description = "Kısa video (Shorts, Reels) transkript aracı"
+requires-python = ">=3.12"
+dependencies = [
+    "httpx",
+    "python-dotenv",
+    "fastapi>=0.165.0",
+    "uvicorn>=0.54.0",
+    "python-multipart>=0.0.34",
+    "truststore>=0.10.5",
+]
+
+[dependency-groups]
+dev = [
+    "pytest",
+    "jsonschema",
+    "jiwer",
+    "google-genai>=3.6.1",
+    {include-group = "vad"},
+]
+vad = [
+    "numpy>=2.5.5",
+    "onnxruntime>=1.32.0",
+]
+
+[tool.uv]
+# Paket kurulmaz; kod proje kökünden çalışır (pytest pythonpath ile).
+package = false
+# Her şey proje klasörünün içinde kalır: önbellek tools/ altında (git dışı).
+cache-dir = "tools/uv-cache"
+# uv onaysız Python indirmesin; kurulu Python kullanılır.
+python-downloads = "never"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--import-mode=importlib"
+pythonpath = ["."]
+markers = [
+    "model: Silero modelini indirir (ağ gerektirir)",
+    "slow: gerçek saatli 15 sn sıra testi (yaklaşık 35 sn)",
+]

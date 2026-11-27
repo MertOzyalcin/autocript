@@ -1,0 +1,163 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "transcript-v1.json",
+  "title": "Transkript v1",
+  "description": "Faz 1 transkript çıktısı (spec 6.3). Alan eklemek 1.x, alan silmek ya da anlamını değiştirmek 2.0 demektir.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "job_id", "created_at", "source", "engine", "language",
+    "timing", "words", "segments", "minutes", "non_speech", "warnings"
+  ],
+  "properties": {
+    "schema_version": { "type": "string", "pattern": "^1\\.\\d+$" },
+    "job_id": { "type": "string", "minLength": 1 },
+    "created_at": { "type": "string", "format": "date-time" },
+    "source": { "$ref": "#/$defs/source" },
+    "engine": { "$ref": "#/$defs/engine" },
+    "language": { "type": "string", "minLength": 2 },
+    "timing": { "enum": ["word", "segment"] },
+    "words": { "type": "array", "items": { "$ref": "#/$defs/word" } },
+    "segments": { "type": "array", "items": { "$ref": "#/$defs/segment" } },
+    "minutes": { "type": "array", "items": { "$ref": "#/$defs/minute" } },
+    "non_speech": { "type": "array", "items": { "$ref": "#/$defs/non_speech" } },
+    "warnings": { "type": "array", "items": { "$ref": "#/$defs/warning" } }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "timing": { "const": "word" } }, "required": ["timing"] },
+      "then": {
+        "properties": {
+          "words": {
+            "items": {
+              "properties": {
+                "start": { "type": "number" },
+                "end": { "type": "number" }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "timing": { "const": "segment" } }, "required": ["timing"] },
+      "then": {
+        "properties": {
+          "words": {
+            "items": {
+              "properties": {
+                "start": { "type": "null" },
+                "end": { "type": "null" },
+                "confidence": { "type": "null" }
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "seconds": { "type": "number", "minimum": 0 },
+    "nullable_string": { "type": ["string", "null"] },
+    "count": { "type": ["integer", "null"], "minimum": 0 },
+    "range": {
+      "description": "Yarı açık aralık: [ilk, son + 1).",
+      "type": "array",
+      "prefixItems": [
+        { "type": "integer", "minimum": 0 },
+        { "type": "integer", "minimum": 0 }
+      ],
+      "items": false,
+      "minItems": 2
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "url", "platform_id", "title", "author", "published_at", "duration_s", "stats"],
+      "properties": {
+        "kind": { "enum": ["upload", "youtube", "instagram"] },
+        "url": { "$ref": "#/$defs/nullable_string" },
+        "platform_id": { "$ref": "#/$defs/nullable_string" },
+        "title": { "$ref": "#/$defs/nullable_string" },
+        "author": { "$ref": "#/$defs/nullable_string" },
+        "published_at": { "$ref": "#/$defs/nullable_string" },
+        "duration_s": { "type": ["number", "null"], "minimum": 0 },
+        "stats": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["views", "likes", "comments"],
+          "properties": {
+            "views": { "$ref": "#/$defs/count" },
+            "likes": { "$ref": "#/$defs/count" },
+            "comments": { "$ref": "#/$defs/count" }
+          }
+        }
+      }
+    },
+    "engine": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["route", "provider", "model"],
+      "properties": {
+        "route": { "enum": ["stt", "gemini_youtube"] },
+        "provider": { "type": "string", "minLength": 1 },
+        "model": { "type": "string", "minLength": 1 }
+      }
+    },
+    "word": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["i", "text", "start", "end", "confidence", "low_confidence"],
+      "properties": {
+        "i": { "type": "integer", "minimum": 0 },
+        "text": { "type": "string" },
+        "start": { "type": ["number", "null"], "minimum": 0 },
+        "end": { "type": ["number", "null"], "minimum": 0 },
+        "confidence": { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
+        "low_confidence": { "type": "boolean" }
+      }
+    },
+    "segment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["start", "end", "text", "word_range"],
+      "properties": {
+        "start": { "$ref": "#/$defs/seconds" },
+        "end": { "$ref": "#/$defs/seconds" },
+        "text": { "type": "string" },
+        "word_range": { "$ref": "#/$defs/range" }
+      }
+    },
+    "minute": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["minute", "start", "end", "text", "segment_range"],
+      "properties": {
+        "minute": { "type": "integer", "minimum": 0 },
+        "start": { "$ref": "#/$defs/seconds" },
+        "end": { "$ref": "#/$defs/seconds" },
+        "text": { "type": "string" },
+        "segment_range": { "$ref": "#/$defs/range" }
+      }
+    },
+    "non_speech": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["start", "end", "kind"],
+      "properties": {
+        "start": { "$ref": "#/$defs/seconds" },
+        "end": { "$ref": "#/$defs/seconds" },
+        "kind": { "enum": ["music", "silence", "unknown"] }
+      }
+    },
+    "warning": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "message"],
+      "properties": {
+        "code": { "type": "string", "minLength": 1 },
+        "message": { "type": "string" }
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "task": "transcribe",
+  "language": "turkish",
+  "duration": 5.0,
+  "text": "Merhaba dünya",
+  "words": [
+    {"word": "Merhaba", "start": 0.5, "end": 0.9},
+    {"word": "dünya", "start": 1.0, "end": 1.5}
+  ],
+  "segments": [
+    {"id": 0, "start": 0.0, "end": 2.0, "text": "Merhaba dünya", "avg_logprob": -0.2, "no_speech_prob": 0.1},
+    {"id": 1, "start": 2.0, "end": 5.0, "text": "", "avg_logprob": -1.5, "no_speech_prob": 0.9}
+  ]
+}

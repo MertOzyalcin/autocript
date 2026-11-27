@@ -1,0 +1,12 @@
+{
+  "language_code": "tur",
+  "language_probability": 0.99,
+  "text": "Merhaba (müzik) dünya",
+  "words": [
+    {"text": "Merhaba", "start": 0.5, "end": 0.9, "type": "word", "logprob": -0.05},
+    {"text": " ", "start": 0.9, "end": 1.0, "type": "spacing", "logprob": 0.0},
+    {"text": "(müzik)", "start": 1.0, "end": 4.0, "type": "audio_event", "logprob": 0.0},
+    {"text": " ", "start": 4.0, "end": 4.1, "type": "spacing", "logprob": 0.0},
+    {"text": "dünya", "start": 4.1, "end": 4.5, "type": "word", "logprob": -2.3}
+  ]
+}

@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="__DIL__">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ui.sayfa_baslik}}</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body data-max-upload-mb="__MAX_UPLOAD_MB__">
+  <div class="mesh" aria-hidden="true"><span class="b1"></span><span class="b5"></span><span class="b2"></span><span class="b4"></span><span class="b3"></span></div>
+  <a class="skip" href="#ekranlar">{{ui.atla}}</a>
+
+  <header class="top">
+    <div class="top-inner">
+      <a class="brand" id="home" href="/" aria-label="{{ui.marka_etiket}}">autocript</a>
+      <nav class="capsule" aria-label="{{ui.menu_etiket}}">
+        <a href="/" aria-current="page">{{ui.menu_dokum}}</a>
+        <a href="/kurulum">{{ui.menu_kurulum}}</a>
+      </nav>
+      <a class="setup-state" id="setup-state" href="/kurulum" data-ok="true">{{ui.kurulum_hazir}}</a>
+      <button id="dil-dugmesi" class="dil" type="button" data-hedef="{{ui.dil_hedef}}" lang="{{ui.dil_hedef}}">{{ui.dil_dugmesi}}</button>
+    </div>
+  </header>
+
+  <main id="ekranlar">
+    <!-- 1. home -->
+    <section class="screen glass" id="s-ana" aria-labelledby="h-ana">
+      <h1 id="h-ana" tabindex="-1">{{ui.ana_baslik}}</h1>
+      <p class="lede">{{ui.ana_giris}}</p>
+
+      <form class="intake" id="form" novalidate>
+        <label class="field-label" for="link">{{ui.link_etiket}}</label>
+        <div class="url-row">
+          <input class="url-input" id="link" name="url" type="text" inputmode="url" autocomplete="off" spellcheck="false"
+                 placeholder="https://www.instagram.com/reel/…" aria-describedby="url-check">
+          <button type="button" class="btn" id="paste">{{ui.yapistir}}</button>
+        </div>
+        <p class="check" id="url-check" aria-live="polite">{{ui.link_ipucu}}</p>
+        <p class="not">{{ui.ig_not}}</p>
+
+        <div class="or" aria-hidden="true">{{ui.veya}}</div>
+
+        <label class="drop" id="drop">
+          <input type="file" id="dosya" accept="__UPLOAD_EXTS__" aria-describedby="drop-sub drop-file">
+          <span class="drop-title">{{ui.birak_baslik}}</span>
+          <span class="drop-sub" id="drop-sub">{{ui.birak_alt}} __UPLOAD_EXTS__</span>
+          <span class="drop-file" id="drop-file" aria-live="polite"></span>
+        </label>
+
+        <div class="go-row">
+          <button type="submit" id="dok" class="btn btn-primary btn-big">{{ui.dok}}</button>
+          <p class="form-error" id="form-error" role="alert"></p>
+        </div>
+      </form>
+    </section>
+
+    <!-- 2. progress -->
+    <section class="screen glass" id="s-isl" aria-labelledby="h-isl" hidden>
+      <h2 id="h-isl" tabindex="-1">{{ui.isl_baslik}}</h2>
+      <p class="lede">{{ui.isl_giris}}</p>
+
+      <p class="queue-banner" id="sira" role="status" aria-live="polite" hidden></p>
+
+      <ol class="steps" id="steps">
+        <li class="step" id="step-1" data-state="waiting">
+          <span class="mark" aria-hidden="true"><span class="n">1</span><svg viewBox="0 0 24 24"><path d="M6 12.5l4 4 8-9"/></svg></span>
+          <div><div class="step-name" id="step-1-name">{{ui.adim_video_iniyor}}</div><div class="step-detail" id="step-1-detail">{{ui.adim_kaynak_hazir}}</div></div>
+          <span class="step-status" id="step-1-status">{{ui.durum_sirada}}</span>
+        </li>
+        <li class="step" id="step-2" data-state="waiting">
+          <span class="mark" aria-hidden="true"><span class="n">2</span><svg viewBox="0 0 24 24"><path d="M6 12.5l4 4 8-9"/></svg></span>
+          <div><div class="step-name">{{ui.adim_ses_ayriliyor}}</div><div class="step-detail">{{ui.adim_ses_detay}}</div></div>
+          <span class="step-status" id="step-2-status">{{ui.durum_sirada}}</span>
+        </li>
+        <li class="step" id="step-3" data-state="waiting">
+          <span class="mark" aria-hidden="true"><span class="n">3</span><svg viewBox="0 0 24 24"><path d="M6 12.5l4 4 8-9"/></svg></span>
+          <div><div class="step-name">{{ui.adim_yazi_baslik}}</div><div class="step-detail" id="step-3-detail">{{ui.adim_yazi_detay}}</div></div>
+          <span class="step-status" id="step-3-status">{{ui.durum_sirada}}</span>
+        </li>
+      </ol>
+      <div id="asama" class="visually-hidden" aria-live="polite" hidden></div>
+    </section>
+
+    <!-- 3. result -->
+    <section class="screen glass" id="sonuc" aria-labelledby="baslik" hidden>
+      <div id="uyarilar"></div>
+      <p class="source" id="source" hidden></p>
+      <h2 id="baslik" tabindex="-1"></h2>
+      <button type="button" class="devami" id="baslik-devam" aria-controls="baslik" aria-expanded="false" hidden>{{ui.baslik_devami}}</button>
+      <dl class="meta" id="meta" hidden></dl>
+
+      <div class="track-wrap" id="track-wrap" hidden>
+        <div class="track-head">
+          <h3 id="track-title">{{ui.zaman_cizgisi}}</h3>
+          <p>{{ui.zaman_cizgisi_alt}}</p>
+        </div>
+        <div class="track" id="track" role="group" aria-labelledby="track-title"></div>
+        <div class="scale" aria-hidden="true"><span>0:00</span><span id="scale-end"></span></div>
+      </div>
+
+      <div class="tip-box" id="tip-box" hidden>
+        <p><strong>{{ui.ipucu_on}} <span id="unsure-count"></span> {{ui.ipucu_son}}</strong> {{ui.ipucu_a}} <span class="sample">{{ui.ipucu_cizgi}}</span> {{ui.ipucu_b}}</p>
+        <button type="button" class="btn btn-sm" id="first-unsure">{{ui.ilkine_git}}</button>
+      </div>
+
+      <ol class="transcript" id="satirlar" aria-label="{{ui.menu_dokum}}"></ol>
+
+      <div class="exports" id="indir">
+        <h3>{{ui.indir_baslik}}</h3>
+        <p>{{ui.indir_aciklama}}</p>
+        <div class="export-row">
+          <a class="btn btn-sm" id="dl-txt">{{ui.txt_indir}}</a>
+          <a class="btn btn-sm" id="dl-srt">{{ui.srt_indir}}</a>
+          <a class="btn btn-sm" id="dl-json">{{ui.json_indir}}</a>
+          <button type="button" class="btn btn-quiet btn-sm" id="copy">{{ui.kopyala}}</button>
+        </div>
+        <p class="toast" id="toast" role="status"></p>
+      </div>
+
+      <div class="after">
+        <button type="button" class="btn btn-primary" id="new-run">{{ui.yeni_dok}}</button>
+      </div>
+    </section>
+
+    <!-- 4. error -->
+    <section class="screen glass" id="hata" aria-labelledby="h-hat" hidden>
+      <div class="problem">
+        <h2 id="h-hat" tabindex="-1">{{ui.hata_baslik}}</h2>
+        <p id="hata-mesaj"></p>
+        <p class="problem-link" id="hata-link" hidden></p>
+        <div class="err-actions">
+          <button type="button" class="btn btn-primary" id="hata-yukle">{{ui.dosya_yukle}}</button>
+          <button type="button" class="btn" id="hata-dene" hidden>{{ui.yeniden_dene}}</button>
+          <button type="button" class="btn btn-quiet" id="hata-yeni">{{ui.yeni_islem}}</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

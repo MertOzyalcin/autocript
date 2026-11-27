@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="__DIL__">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ui.kurulum_sayfa_baslik}}</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="mesh" aria-hidden="true"><span class="b1"></span><span class="b5"></span><span class="b2"></span><span class="b4"></span><span class="b3"></span></div>
+  <a class="skip" href="#ekranlar">{{ui.atla}}</a>
+
+  <header class="top">
+    <div class="top-inner">
+      <a class="brand" href="/" aria-label="{{ui.marka_etiket}}">autocript</a>
+      <nav class="capsule" aria-label="{{ui.menu_etiket}}">
+        <a href="/">{{ui.menu_dokum}}</a>
+        <a href="/kurulum" aria-current="page">{{ui.menu_kurulum}}</a>
+      </nav>
+      <a class="setup-state" id="setup-state" href="/kurulum" data-ok="false">{{ui.anahtar_eksik}}</a>
+      <button id="dil-dugmesi" class="dil" type="button" data-hedef="{{ui.dil_hedef}}" lang="{{ui.dil_hedef}}">{{ui.dil_dugmesi}}</button>
+    </div>
+  </header>
+
+  <main id="ekranlar">
+    <section class="screen glass" id="s-kur" aria-labelledby="h-kur">
+      <h1 id="h-kur" tabindex="-1">{{ui.menu_kurulum}}</h1>
+      <p class="lede">{{ui.kur_giris}}</p>
+
+      <div class="keys">
+        <div class="key required" id="k-elevenlabs">
+          <div class="key-head">
+            <h3>{{ui.el_baslik}}</h3>
+            <span class="badge badge-req">{{ui.zorunlu}}</span>
+            <span class="badge badge-saved" id="rozet-elevenlabs" hidden>{{ui.kayitli}}</span>
+          </div>
+          <p class="key-desc">{{ui.el_aciklama}}</p>
+          <div class="saved is-empty" id="kutu-elevenlabs">
+            <div class="saved-val" id="kayit-elevenlabs">{{ui.kayitli_degil}}</div>
+            <div class="saved-meta" id="meta-elevenlabs">{{ui.el_meta_bos}}</div>
+          </div>
+          <form class="key-form" id="form-elevenlabs" autocomplete="off" novalidate>
+            <label class="field-label" for="alan-elevenlabs" id="etiket-elevenlabs">{{ui.anahtari_yapistir}}</label>
+            <div class="key-row">
+              <input class="key-input" id="alan-elevenlabs" type="password" autocomplete="off" spellcheck="false" placeholder="{{ui.el_yer}}">
+              <button type="submit" class="btn btn-primary" id="kaydet-elevenlabs">{{ui.kaydet}}</button>
+            </div>
+          </form>
+          <div class="key-actions">
+            <button type="button" class="btn btn-sm" id="test-elevenlabs" aria-label="{{ui.el_test_aria}}">{{ui.test_et}}</button>
+          </div>
+          <p class="status" id="mesaj-elevenlabs" role="status" hidden></p>
+          <details class="howto">
+            <summary>{{ui.nereden}}</summary>
+            <ol>
+              <li><a href="https://elevenlabs.io/app/settings/api-keys" target="_blank" rel="noopener noreferrer">elevenlabs.io/app/settings/api-keys</a> {{ui.el_adim_hesap}}</li>
+              <li><strong>Create API Key</strong> {{ui.el_adim_olustur}} <strong>Speech to Text</strong> {{ui.el_adim_olustur_son}}</li>
+              <li>{{ui.adim_yapistir_a}} <strong>{{ui.test_et}}</strong>{{ui.adim_yapistir_b}} <strong>{{ui.kaydet}}</strong>{{ui.adim_yapistir_c}}</li>
+            </ol>
+          </details>
+        </div>
+
+        <div class="key" id="k-groq">
+          <div class="key-head">
+            <h3>{{ui.groq_baslik}}</h3>
+            <span class="badge badge-opt">{{ui.istege_bagli}}</span>
+            <span class="badge badge-saved" id="rozet-groq" hidden>{{ui.kayitli}}</span>
+          </div>
+          <p class="key-desc">{{ui.groq_aciklama}}</p>
+          <div class="saved is-empty" id="kutu-groq">
+            <div class="saved-val" id="kayit-groq">{{ui.kayitli_degil}}</div>
+            <div class="saved-meta" id="meta-groq">{{ui.groq_meta_bos}}</div>
+          </div>
+          <form class="key-form" id="form-groq" autocomplete="off" novalidate>
+            <label class="field-label" for="alan-groq" id="etiket-groq">{{ui.anahtari_yapistir}}</label>
+            <div class="key-row">
+              <input class="key-input" id="alan-groq" type="password" autocomplete="off" spellcheck="false" placeholder="{{ui.groq_yer}}">
+              <button type="submit" class="btn btn-primary" id="kaydet-groq">{{ui.kaydet}}</button>
+            </div>
+          </form>
+          <div class="key-actions">
+            <button type="button" class="btn btn-sm" id="test-groq" aria-label="{{ui.groq_test_aria}}">{{ui.test_et}}</button>
+            <button type="button" class="btn btn-danger btn-sm" id="kaldir-groq" aria-label="{{ui.groq_kaldir_aria}}" hidden>{{ui.kaldir}}</button>
+          </div>
+          <p class="status" id="mesaj-groq" role="status" hidden></p>
+          <details class="howto">
+            <summary>{{ui.nereden}}</summary>
+            <ol>
+              <li><a href="https://console.groq.com/keys" target="_blank" rel="noopener noreferrer">console.groq.com/keys</a> {{ui.groq_adim_hesap}}</li>
+              <li><strong>Create API Key</strong> {{ui.groq_adim_olustur}}</li>
+              <li>{{ui.groq_adim_yapistir}} <strong>{{ui.test_et}}</strong>{{ui.adim_yapistir_b}} <strong>{{ui.kaydet}}</strong>{{ui.adim_yapistir_c}}</li>
+            </ol>
+          </details>
+        </div>
+      </div>
+
+      <div class="kurulum-alt">
+        <a id="devam" href="/" class="btn btn-primary devre-disi" aria-disabled="true">{{ui.devam}}</a>
+        <p class="status" id="mesaj-genel" role="status" hidden></p>
+      </div>
+
+      <p class="privacy">{{ui.gizlilik}}</p>
+    </section>
+  </main>
+
+  <script src="/static/kurulum.js"></script>
+</body>
+</html>

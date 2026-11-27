@@ -1,0 +1,157 @@
+================================================================
+  VIDEO TRANSKRİPT ARACI — BENİ OKU (KULLANIM REHBERİ)
+================================================================
+
+BU UYGULAMA NE İŞE YARAR?
+-------------------------
+Kısa videolardaki (en fazla 3 dakika) konuşmaları cümle cümle,
+saniyeleriyle birlikte yazıya döker.
+- Bilgisayarınızdan bir video ya da ses dosyası yükleyebilirsiniz.
+- Bir YouTube Shorts ya da Instagram Reel linki
+  yapıştırabilirsiniz.
+- Her şey kendi bilgisayarınızda çalışır; ayrıca bir yere üye
+  olmanız ya da program kurmanız gerekmez.
+
+
+BAŞLAMADAN ÖNCE GEREKENLER
+--------------------------
+- Windows 10 veya Windows 11 bilgisayar.
+- İlk açılışta internet bağlantısı.
+- Yaklaşık 400 MB boş disk alanı.
+- Ücretsiz açılabilen bir ElevenLabs hesabı (konuşmayı yazıya
+  dökmek için kullanılır).
+
+
+KURULUM (3 BASİT ADIM)
+----------------------
+1. ZİP DOSYASINI KLASÖRE ÇIKARTIN
+   - İndirdiğiniz zip dosyasının içine girip doğrudan çalıştırmayın.
+   - Zip dosyasına sağ tıklayın, "Özellikler"i seçin. Altta
+     "Engellemeyi kaldır" kutusu varsa işaretleyip "Tamam"a basın.
+   - Zip dosyasına sağ tıklayın, "Tümünü ayıkla"yı seçin.
+   - Klasörü "C:\video-transkript" gibi düz bir yere çıkartın.
+     (Masaüstü veya Belgeler klasörü OneDrive ile buluta
+     yedeklenebilir; bu yüzden doğrudan C:\ altına çıkartmanız
+     daha güvenlidir.)
+
+2. UYGULAMAYI BAŞLATIN
+   - Çıkarttığınız "video-transkript" klasörünün içindeki
+     "baslat.cmd" dosyasına çift tıklayın.
+   - İlk açılış birkaç dakika sürebilir; gereken bütün parçalar
+     otomatik olarak yalnızca bu klasörün içine iner.
+     Bilgisayarınızın başka hiçbir yerine bir şey kurulmaz.
+   - Açılan siyah pencereyi uygulamayı kullanırken kapatmayın.
+     İşiniz bitince o pencereyi kapatabilirsiniz.
+
+3. ELEVENLABS ANAHTARINIZI GİRİN
+   - İlk açılışta tarayıcınız otomatik olarak Kurulum ekranıyla
+     açılır.
+   - Ekrandaki "Nereden alırım?" başlığına tıklayarak adımları
+     izleyin ve ElevenLabs anahtarınızı kopyalayıp kutuya yapıştırın.
+   - Önce "Test et", sonra "Kaydet" düğmesine basın.
+   - Groq anahtarı isteğe bağlıdır. Eklerseniz, ElevenLabs geçici
+     olarak yanıt vermediğinde yedek olarak devreye girer.
+   - Anahtarı bir kez kaydetmeniz yeterlidir; sonraki açılışlarda
+     doğrudan ana ekran açılır.
+
+
+NASIL KULLANILIR?
+-----------------
+1. Ana ekranda iki yoldan birini seçin:
+   - Bir YouTube Shorts ya da Instagram Reel linkini kutuya
+     yapıştırın, VEYA
+   - Bilgisayarınızdan bir video/ses dosyasını sürükleyip bırakın
+     (ya da tıklayıp seçin).
+   Not: Link yapıştırdığınızda seçili dosya, dosya seçtiğinizde
+   yazılı link kendiliğinden temizlenir.
+   YouTube linkinde yalnızca videonun sesi indirilir.
+
+2. "Dök" düğmesine basın ve işlemin bitmesini bekleyin.
+   - Aynı siteden birden fazla linki arka arkaya gönderirseniz
+     uygulama bunları sıraya alır ve iki indirme arasında en az
+     15 saniye bekler. Bu sırada ekranda "YouTube için sıra
+     bekleniyor" ya da "Instagram için sıra bekleniyor" yazar.
+     Her sitenin sırası ayrıdır: bir YouTube linki Instagram
+     sırasını beklemez.
+
+3. İşlem bitince sonuç ekranı açılır:
+   - Cümleleri zaman damgalarıyla okuyabilirsiniz.
+   - Noktalı çizgiyle işaretlenen kelimeler, sesin daha az net
+     duyulduğu yerlerdir; üzerine gelince güven oranını görürsünüz.
+   - Metni kopyalayabilir veya TXT (düz metin), SRT (altyazı) ve
+     JSON dosyası olarak indirebilirsiniz.
+   - Instagram'da uzun gönderi açıklaması ilk 3 satırla
+     gösterilir; "Devamını göster" ile tamamını açabilirsiniz.
+
+4. Arayüz dili:
+   - Sağ üstteki "English" düğmesi arayüzü İngilizceye, "Türkçe"
+     düğmesi Türkçeye çevirir. Seçiminiz hatırlanır.
+   - Bir iş sürerken dil düğmesi kapalıdır.
+
+
+ÖNEMLİ BİLGİLER VE SINIRLAR
+---------------------------
+- En fazla 3 dakikalık videolar desteklenir.
+- Bilinen sınır: Akıllı Uygulama Denetimi (Smart App Control)
+  imzasız araçları (Python, ffmpeg vb.) engellediği için açık
+  olduğu bilgisayarda uygulama çalışmaz. "baslat.cmd" denetim
+  açıksa bunu söyleyip kapanır, değerlendirme modundaysa uyarıp
+  devam eder. İsteyen, Windows Güvenliği → Uygulama ve tarayıcı
+  denetimi → Akıllı Uygulama Denetimi bölümünden kapatabilir;
+  karar kullanıcınındır.
+- YouTube ya da Instagram bazı videoları indirmeye izin
+  vermeyebilir (gizli hesap, giriş istemesi, çoklu gönderi veya
+  fotoğraf vb.). Böyle bir durumda ekranda nedenini görürsünüz ve
+  "Dosya yükle" düğmesiyle videoyu bilgisayarınızdan
+  yükleyebilirsiniz.
+- YouTube ve Instagram linkleri resmi bir yol kullanmaz ve
+  sitelerin kullanım şartlarıyla çelişebilir. Hiçbir hesap ya da
+  şifre kullanılmaz. Yalnızca kullanım hakkınız olan içerikler
+  için kullanın.
+- Müzikli ya da konuşmasız bölümlerde uydurma metin görürseniz:
+  Konuşmasız bölüm dedektörü varsayılan olarak kapalıdır. Açmak
+  için klasördeki ".env" dosyasına NONSPEECH_DETECTOR=silero
+  satırını ekleyin, siyah pencereyi kapatıp "baslat.cmd"yi
+  yeniden açın. İlk açılışta ek paketler iner.
+
+
+GİZLİLİK
+--------
+- Anahtarlarınız yalnızca bu klasörde saklanır, başka hiçbir yere
+  gönderilmez.
+- Yalnızca videonun sesi, yazıya çevrilmesi için seçtiğiniz
+  servise (ElevenLabs, yedekte Groq) gönderilir.
+- Yüklediğiniz ya da linkten indirilen videolar iş bitince
+  otomatik olarak silinir.
+- Hiçbir YouTube ya da Instagram hesabınız, şifreniz ya da
+  tarayıcı çereziniz kullanılmaz.
+
+
+SIK KARŞILAŞILAN DURUMLAR
+-------------------------
+- "İlk açılış çok bekledi":
+  Yalnızca ilk seferde kurulum bileşenleri indiği için birkaç
+  dakika sürer. Sonraki açılışlar saniyeler içinde açılır.
+
+- "Oturum yok. Uygulamayı baslat.cmd ile açın." uyarısı:
+  Sayfayı tarayıcıya elle yazmak yerine klasördeki "baslat.cmd"
+  dosyasına çift tıklayın.
+
+- Uygulama zaten açıkken "baslat.cmd"ye tekrar tıklarsanız:
+  İkinci bir pencere açılmaz; açık olan uygulama tarayıcınızda
+  yeniden öne gelir.
+
+- Antivirüs programı uyarı verirse:
+  İndirilen yardımcı bileşenler bazen antivirüse takılabilir.
+  Bu klasörü antivirüsünüzün izinli listesine ekleyin.
+
+- "Video indirme aracı kurulu değil" ya da "YouTube indirme
+  aracı eksik ya da güncel değil" uyarısı alırsanız:
+  İnternet bağlantınızı kontrol edip siyah pencereyi kapatın ve
+  "baslat.cmd"ye yeniden çift tıklayın. Sorun sürerse videoyu
+  dosya olarak yükleyebilirsiniz.
+
+- Yeni bir sürüm geldiğinde güncelleme:
+  Yeni zip'i ayrı bir klasöre çıkartın. Eski klasördeki ".env"
+  dosyasını yeni klasöre kopyalarsanız kayıtlı anahtarlarınız
+  aynen taşınır.
